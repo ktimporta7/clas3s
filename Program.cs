@@ -1,86 +1,47 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System;
 
-using System.ComponentModel.Design;
-
-public class Program
+class Empleado
 {
-    public static void Main()
-    {
-        Participante Juan = new Participante("Juan");
-        Participante Pedro = new Participante("Pedro");
+    public string Name {get;set;}
+    public int Salario {get;set;}
 
-        Enfrentamiento competencia = new Enfrentamiento(Juan, Pedro);
-        Console.WriteLine($"El ganador es {competencia.iniciar()}");
+    public Empleado(string name,int salario)
+    {
+        Name = name;
+        Salario=salario*12;
+    }
+    
+    public void Mostrar()
+    
+    {
+           Console.WriteLine($"{Name} gana {Salario} $ anualmente");
     }
 }
-
-
-
-
-public class Participante
+class Program 
 {
-    public string Nombre { get; set; }
-
-    public int rondasGanadas
+    static void Main()
     {
-        get;
-        set;
-    }
+        Empleado empleado1= new Empleado("jose rodriguez",400);
+        Empleado empleado2= new Empleado("Elian corrales",500);
+        Empleado empleado3= new Empleado("enmanuel vazques",200);
+        Empleado empleado4= new Empleado("maria spocito",250);
+        Empleado empleado5= new Empleado("Manucho cuadra",569);
 
-    public Participante(string n)
-    {
-        Nombre = n;
-        rondasGanadas = 0;
-    }
 
-    public string escoger()
-    {
-        string[] opciones = new[] { "piedra", "papel", "tijera" };
-        Random i = new Random();
-        
-        return opciones[i.Next(0, 3)];
-    }
 
-}
-
-public class Enfrentamiento
-{
-    public string Ganador { get; set; }
-    public Participante Participante1 { get; set; }
-    public Participante Participante2 { get; set; }
-
-    public Enfrentamiento(Participante p1, Participante p2)
-    {
-        Participante1 = p1;
-        Participante2 = p2;
-    }
-
-    public string iniciar()
-    {
-        string part1 = Participante1.escoger();
-        string part2 = Participante2.escoger();
-        Console.WriteLine($"{Participante1.Nombre} escogio {part1}");
-        Console.WriteLine($"{Participante2.Nombre} escogio {part2}");
-        if (part1 == part2)
+        Console.WriteLine("esto ganan los empleados anualmente");
         {
-            Console.WriteLine("Empate");
+            Console.ReadKey();
+            empleado1.Mostrar();
+             Console.ReadKey();
+            empleado2.Mostrar();
+             Console.ReadKey();
+            empleado3.Mostrar();
+             Console.ReadKey();
+            empleado4.Mostrar();
+             Console.ReadKey();
+            empleado5.Mostrar();
         }
-
-        if ((part1 == "piedra" && part2 == "tijeras") || (part1 == "papel" && part2 == "piedra") || (part1 == "piedra" && part2 == "tijeras"))
-        {
-            Console.WriteLine($"Gano {Participante1.Nombre}");
-            Ganador = Participante1.Nombre;
-        }
-        else
-        {
-            Console.WriteLine($"Gano {Participante2.Nombre}");
-            Ganador = Participante2.Nombre;
-        }
-        
-        return Ganador;
     }
-        
-        
-        
-}
-
+    
+} 
